@@ -1,0 +1,173 @@
+/* Search bar */
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-bar label {
+  display: block;
+  width: 0%;
+  height: 0%;
+  visibility: hidden;
+}
+
+.search-bar input[type="search"] {
+  flex: 1 1 auto;
+  height: 70px;
+  padding-left: 25px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  background: #E7E7E7;
+  font-size: 18px;
+}
+
+.search-bar input::placeholder {
+  color: #000;
+  opacity: 0.25;
+}
+
+.search-bar button {
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background: #E7E7E7;
+}
+
+.search-bar button i {
+  display:block;
+  margin-right: 18px;
+  margin-left: 18px;
+  font-size: 32px;
+}
+
+
+/* Tags area */
+
+.tags-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  min-height: 35px;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;;
+}
+
+.background--ingredient {
+  background: #3282F7;
+}
+
+.background--device {
+  background: #68D9A4;
+}
+
+.background--ustensil {
+  background: #ED6454;
+}
+
+.tag button {
+  margin-left: 15px;
+  border: none;
+  background: none;
+  color: #FFF;
+  font-size: 20px;
+}
+
+
+/* Selection tags */
+
+.tags-selection {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 15px;
+}
+
+.tags-selection-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 170px;
+  min-height: 70px;
+  border: none;
+  border-radius: 5px;
+}
+
+.tags-selection-item legend {
+  position: absolute;
+  visibility: hidden;
+  width: 0%;
+  height: 0%;
+}
+
+.input-component {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tags-selection-item input[type="text"] {
+
+  width: 0;
+  min-width: 85%;
+
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tags-selection-item input[type="text"]::placeholder {
+  opacity: 1;
+  color: #FFF;
+}
+
+.arrow {
+  border: none;
+  background: transparent;
+  color: #FFF;
+  font-size: 16px;
+}
+
+.arrow--open {
+  transform: rotate(180deg);
+}
+
+.items {
+
+  display:none;
+
+  padding-left: 20px;
+  padding-bottom: 20px;
+  width: 660px;
+  column-count: 3;
+  column-width: 200px;
+  color: #FFF;
+}
+
+.items-open {
+  display: block;
+}
+
+.items li {
+  line-height: 180%;
+  font-size: 18px;
+  font-weight: 400;
+}
