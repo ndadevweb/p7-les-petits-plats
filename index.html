@@ -26,7 +26,7 @@
 		</ul>
 
 		<form id="tags-selection" class="tags-selection">
-			<fieldset class="tags-selection-item ingredients-list background--ingredient">
+			<fieldset class="tags-selection-item background--ingredient">
 				<legend>Ingrédients</legend>
 
 				<div class="input-component">
@@ -34,42 +34,10 @@
 					<button type="button" class="arrow"><i class="fas fa-chevron-down"></i></button>
 				</div>
 
-				<ul class="items background--ingredient">
-					<!-- CONTENU DE TEST CELUI-CI SERA GENERE DYNAMIQUEMENT -->
-					<li>Lait de coco</li>
-					<li>Sucre</li>
-					<li>Concombre</li>
-					<li>Citron Vert</li>
-					<li>Oignon</li>
-					<li>Riz blanc</li>
-					<li>Maïs</li>
-					<li>Crème fraiche</li>
-					<li>Pomme</li>
-					<li>Chocolat au lait</li>
-					<li>Jus de citron</li>
-					<li>Glaçons</li>
-					<li>Tomate</li>
-					<li>Poulet</li>
-					<li>Poivron rouge</li>
-					<li>Thon en miettes</li>
-					<li>Vinaigrette</li>
-					<li>Gruyère rapé</li>
-					<li>Oeuf</li>
-					<li>Crème liquide</li>
-					<li>Crème de coco</li>
-					<li>Thon Rouge</li>
-					<li>Carotte</li>
-					<li>Coulis de tomate</li>
-					<li>Huile d'olive</li>
-					<li>Oeuf dur</li>
-					<li>Pâte feuilletée</li>
-					<li>Moutarde de Dijon</li>
-					<li>Sucre en Poudre</li>
-					<li>Beurre</li>
-				</ul>
+				<ul id="list-ingredients" class="items background--ingredient"></ul>
 			</fieldset>
 
-			<fieldset class="tags-selection-item devices-list background--device">
+			<fieldset class="tags-selection-item background--appliance">
 				<legend>Appareils</legend>
 
 				<div class="input-component">
@@ -77,10 +45,10 @@
 					<button type="button" class="arrow"><i class="fas fa-chevron-down"></i></button>
 				</div>
 
-				<ul class="items background--device"></ul>
+				<ul id="list-appliances" class="items background--appliance"></ul>
 			</fieldset>
 
-			<fieldset class="tags-selection-item ustensils-list background--ustensil">
+			<fieldset class="tags-selection-item background--ustensil">
 				<legend>Ustensiles</legend>
 
 				<div class="input-component">
@@ -88,145 +56,16 @@
 					<button type="button" class="arrow"><i class="fas fa-chevron-down"></i></button>
 				</div>
 
-				<ul class="items background--ustensil"></ul>
+				<ul id="list-ustensils" class="items background--ustensil"></ul>
 			</fieldset>
 		</form>
 	</aside>
 
 	<main class="container">
-		<section id="recipes" class="recipes" arial-label="Liste des recettes">
-			<!-- CONTENU DE TEST - CE BLOC SERA MIS A JOUR DYNAMIQUEMENT -->
-			<article class="recipe-item">
-				<div class="recipe-image"></div>
-
-				<h3 class="recipe-title">
-					Limonade de Coco
-					<span class="duration">
-						<i class="far fa-clock"></i> 10 min
-					</span>
-				</h3>
-
-				<ul class="recipe-ingredients">
-					<li><strong>Lait de coco:</strong> 400ml</li>
-					<li><strong>Jus de citron:</strong> 2</li>
-					<li><strong>Crème de coco:</strong> 4 cuillères</li>
-					<li><strong>Sucre:</strong> 20g</li>
-					<li><strong>Glaçon:</strong> 2</li>
-				</ul>
-
-				<p class="recipe-description">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
-			</article>
-
-			<article class="recipe-item">
-				<div class="recipe-image"></div>
-
-				<h3 class="recipe-title">
-					Poisson Cru à la tahitienne
-					<span class="duration">
-						<i class="far fa-clock"></i> 60 min
-					</span>
-				</h3>
-
-				<ul class="recipe-ingredients">
-					<li><strong>Thon Rouge (ou blanc):</strong> 200g</li>
-					<li><strong>Concombre:</strong> 1</li>
-					<li><strong>Tomate:</strong> 2</li>
-					<li><strong>Carotte:</strong> 1</li>
-					<li><strong>Citron Vert:</strong> 5</li>
-					<li><strong>Lait de coco:</strong> 100ml</li>
-				</ul>
-
-				<p class="recipe-description">Découper le thon en dés, mettre dans un plat et recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2...</p>
-			</article>
-
-			<article class="recipe-item">
-				<div class="recipe-image"></div>
-
-				<h3 class="recipe-title">
-					Poulet coco réunionnais
-					<span class="duration">
-						<i class="far fa-clock"></i> 80 min
-					</span>
-				</h3>
-
-				<ul class="recipe-ingredients">
-					<li><strong>Poulet:</strong> 1</li>
-					<li><strong>Lait de coco:</strong> 400ml</li>
-					<li><strong>Coulis de tomate:</strong> 25cl</li>
-					<li><strong>Oignon:</strong> 1</li>
-					<li><strong>Poivron rouge:</strong> 1</li>
-					<li><strong>Huile d'olive</strong></li>
-				</ul>
-
-				<p class="recipe-description">Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de...</p>
-			</article>
-
-			<article class="recipe-item">
-				<div class="recipe-image"></div>
-
-				<h3 class="recipe-title">
-					Limonade de Coco
-					<span class="duration">
-						<i class="far fa-clock"></i> 10 min
-					</span>
-				</h3>
-
-				<ul class="recipe-ingredients">
-					<li><strong>Lait de coco:</strong> 400ml</li>
-					<li><strong>Jus de citron:</strong> 2</li>
-					<li><strong>Crème de coco:</strong> 4 cuillères</li>
-					<li><strong>Sucre:</strong> 20g</li>
-					<li><strong>Glaçon:</strong> 2</li>
-				</ul>
-
-				<p class="recipe-description">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
-			</article>
-
-			<article class="recipe-item">
-				<div class="recipe-image"></div>
-
-				<h3 class="recipe-title">
-					Poisson Cru à la tahitienne
-					<span class="duration">
-						<i class="far fa-clock"></i> 60 min
-					</span>
-				</h3>
-
-				<ul class="recipe-ingredients">
-					<li><strong>Thon Rouge (ou blanc):</strong> 200g</li>
-					<li><strong>Concombre:</strong> 1</li>
-					<li><strong>Tomate:</strong> 2</li>
-					<li><strong>Carotte:</strong> 1</li>
-					<li><strong>Citron Vert:</strong> 5</li>
-					<li><strong>Lait de coco:</strong> 100ml</li>
-				</ul>
-
-				<p class="recipe-description">Découper le thon en dés, mettre dans un plat et recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2...</p>
-			</article>
-
-			<article class="recipe-item">
-				<div class="recipe-image"></div>
-
-				<h3 class="recipe-title">
-					Poulet coco réunionnais
-					<span class="duration">
-						<i class="far fa-clock"></i> 80 min
-					</span>
-				</h3>
-
-				<ul class="recipe-ingredients">
-					<li><strong>Poulet:</strong> 1</li>
-					<li><strong>Lait de coco:</strong> 400ml</li>
-					<li><strong>Coulis de tomate:</strong> 25cl</li>
-					<li><strong>Oignon:</strong> 1</li>
-					<li><strong>Poivron rouge:</strong> 1</li>
-					<li><strong>Huile d'olive</strong></li>
-				</ul>
-
-				<p class="recipe-description">Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de...</p>
-			</article>
-		</section>
+		<section id="recipes" class="recipes" arial-label="Liste des recettes"></section>
 	</main>
+
+	<script type="module" src="./assets/js/app.js"></script>
 
 	<!-- icones -->
 	<script src="https://kit.fontawesome.com/994e9d2d58.js" crossorigin="anonymous"></script>

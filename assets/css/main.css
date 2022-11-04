@@ -47,8 +47,13 @@
 }
 
 .recipe-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
   width: 175px;
-  text-overflow: ellipsis;
+  height: 85px;
   font-family: Roboto;
   font-size: 12px;
   font-weight: 400;
