@@ -80,4 +80,80 @@ export default class Recipe {
 
     return recipe.ingredients.some(detail => detail.ingredient.toLowerCase().includes(keywordToLower))
   }
+
+    /**
+   * Returns an array containing all ingredients
+   *
+   * @param {Object[]} recipes
+   * @returns {Set<string>}
+   */
+  extractIngredients(recipes) {
+    const recipeReducer = (acc, current) => acc = current.ingredient.toLowerCase()
+    const recipeIngredients = recipe => recipe.ingredients.reduce(recipeReducer, [])
+
+    return new Set([...recipes.map(recipeIngredients)])
+  }
+
+  /**
+   * Returns an array containing all appliances
+   *
+   * @param {Object[]} recipes
+   * @returns {Set<string>}
+   */
+  extractAppliances(recipes) {
+    const recipeAppliances = recipes.map(recipe => recipe.appliance.toLowerCase())
+
+    return new Set([...recipeAppliances])
+  }
+
+  /**
+   * Returns an array containing all ustensils
+   *
+   * @param {Object[]} recipes
+   * @returns {Set<string>}
+   */
+  extractUstensils(recipes) {
+    const recipeReducer = (acc, current) => acc = current.toLowerCase()
+    const recipeUstensils = recipe => recipe.ustensils.reduce(recipeReducer, [])
+
+    return new Set([...recipes.map(recipeUstensils)])
+  }
+
+  /**
+   * Returns an array containing all ingredients
+   *
+   * @param {Object[]} recipes
+   * @returns {Set<string>}
+   */
+   extractIngredients(recipes) {
+    const recipeReducer = (acc, current) => acc = current.ingredient.toLowerCase()
+    const recipeIngredients = recipe => recipe.ingredients.reduce(recipeReducer, [])
+
+    return new Set([...recipes.map(recipeIngredients)])
+  }
+
+  /**
+   * Returns an array containing all appliances
+   *
+   * @param {Object[]} recipes
+   * @returns {Set<string>}
+   */
+  extractAppliances(recipes) {
+    const recipeAppliances = recipes.map(recipe => recipe.appliance.toLowerCase())
+
+    return new Set([...recipeAppliances])
+  }
+
+  /**
+   * Returns an array containing all ustensils
+   *
+   * @param {Object[]} recipes
+   * @returns {Set<string>}
+   */
+  extractUstensils(recipes) {
+    const recipeReducer = (acc, current) => acc = current.toLowerCase()
+    const recipeUstensils = recipe => recipe.ustensils.reduce(recipeReducer, [])
+
+    return new Set([...recipes.map(recipeUstensils)])
+  }
 }
