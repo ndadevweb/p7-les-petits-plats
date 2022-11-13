@@ -30,7 +30,7 @@ export default class Recipe {
    * @param {String} keywords
    * @returns {Boolean}
    */
-  fetchRecipesByKeyword(recipes, keyword) {
+  fetchRecipeBySimpleSearch(recipes, keyword) {
     const recipesMatches = recipe => {
       return (
         this.hasKeywordInName(recipe, keyword) === true
@@ -41,6 +41,54 @@ export default class Recipe {
 
     return recipes.filter(recipesMatches)
   }
+
+  fetchRecipesByAdvancedSearch(recipes, options) {
+    return recipes.filter(recipe => {
+      const { ingredients, appliances, ustensils } = options
+
+      const hasIngredientSelected = ingredients.length > 0 ? this.hasIngredientsSelected(recipe, ingredients) : true
+      const hasAppliancesSelected = appliances.length > 0 ? this.hasAppliancesSelected(recipe, appliances) : true
+      const hasUstensilsSelected = ustensils.length > 0 ? this.hasUstensilsSelected(recipe, ustensils) : true
+
+      return (
+        hasIngredientSelected === true
+        && hasAppliancesSelected === true
+        && hasUstensilsSelected === true
+      )
+    })
+  }
+
+  fetchRecipesFiltered(recipes, options) {
+    const { keyword } = options
+
+    const keywordTrim = keyword?.trim()
+
+    if (keywordTrim !== '' && keywordTrim.length >= 3) {
+      recipes = this.fetchRecipeBySimpleSearch(recipes, keywordTrim)
+    }
+
+    return this.fetchRecipesByAdvancedSearch(recipes, options)
+  }
+
+
+  hasIngredientsSelected(recipe, ingredientsSelected) {
+    const recipeIngredients = recipe.ingredients.map(ingredientList => ingredientList.ingredient.toLowerCase())
+
+    return ingredientsSelected.every(ingredientSelected => recipeIngredients.includes(ingredientSelected)) === true
+  }
+
+  hasAppliancesSelected(recipe, appliancesSelected) {
+    const recipeAppliances = [recipe.appliance.toLowerCase()]
+
+    return appliancesSelected.every(applianceSelected => recipeAppliances.includes(applianceSelected)) === true
+  }
+
+  hasUstensilsSelected(recipe, ustensilsSelected) {
+    const recipeUstensils = recipe.ustensils.map(ustensil => ustensil.toLowerCase())
+
+    return ustensilsSelected.every(ustensilSelected => recipeUstensils.includes(ustensilSelected)) === true
+  }
+
 
   /**
    * Check if recipe name contains 'keyword' value
@@ -81,79 +129,67 @@ export default class Recipe {
     return recipe.ingredients.some(detail => detail.ingredient.toLowerCase().includes(keywordToLower))
   }
 
-    /**
-   * Returns an array containing all ingredients
-   *
-   * @param {Object[]} recipes
-   * @returns {Set<string>}
-   */
-  extractIngredients(recipes) {
-    const recipeReducer = (acc, current) => acc = current.ingredient.toLowerCase()
-    const recipeIngredients = recipe => recipe.ingredients.reduce(recipeReducer, [])
-
-    return new Set([...recipes.map(recipeIngredients)])
-  }
-
-  /**
-   * Returns an array containing all appliances
-   *
-   * @param {Object[]} recipes
-   * @returns {Set<string>}
-   */
-  extractAppliances(recipes) {
-    const recipeAppliances = recipes.map(recipe => recipe.appliance.toLowerCase())
-
-    return new Set([...recipeAppliances])
-  }
-
-  /**
-   * Returns an array containing all ustensils
-   *
-   * @param {Object[]} recipes
-   * @returns {Set<string>}
-   */
-  extractUstensils(recipes) {
-    const recipeReducer = (acc, current) => acc = current.toLowerCase()
-    const recipeUstensils = recipe => recipe.ustensils.reduce(recipeReducer, [])
-
-    return new Set([...recipes.map(recipeUstensils)])
+  itemWithoutExcluded(items, itemsToExclude) {
+    return items.filter(item => itemsToExclude.includes(item) === false)
   }
 
   /**
    * Returns an array containing all ingredients
    *
    * @param {Object[]} recipes
+   * @param {Array[<string>]} ingredientsToExclude
    * @returns {Set<string>}
    */
-   extractIngredients(recipes) {
-    const recipeReducer = (acc, current) => acc = current.ingredient.toLowerCase()
-    const recipeIngredients = recipe => recipe.ingredients.reduce(recipeReducer, [])
+  extractIngredients(recipes, ingredientsToExclude = []) {
+    const ingredients = recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase()))
+    let ingredientsFiltered = ingredients.reduce((acc, current) => {
+      acc.push(...current)
+      return acc
+    }, [])
 
-    return new Set([...recipes.map(recipeIngredients)])
+    ingredientsFiltered = ingredientsToExclude.length > 0
+      ? this.itemWithoutExcluded(ingredientsFiltered, ingredientsToExclude)
+      : ingredientsFiltered
+
+    return new Set([...ingredientsFiltered])
   }
 
   /**
    * Returns an array containing all appliances
    *
    * @param {Object[]} recipes
+   * @param {Array[<string>]} appliancesToExclude
    * @returns {Set<string>}
    */
-  extractAppliances(recipes) {
-    const recipeAppliances = recipes.map(recipe => recipe.appliance.toLowerCase())
+  extractAppliances(recipes, appliancesToExclude = []) {
+    let appliancesFiltered = recipes.map(recipe => recipe.appliance.toLowerCase())
 
-    return new Set([...recipeAppliances])
+    appliancesFiltered = appliancesToExclude.length > 0
+      ? this.itemWithoutExcluded(appliancesFiltered, appliancesToExclude)
+      : appliancesFiltered
+
+    return new Set([...appliancesFiltered])
   }
 
   /**
    * Returns an array containing all ustensils
    *
    * @param {Object[]} recipes
+   * @param {Array[<string>]} ustensilsToExclude
    * @returns {Set<string>}
    */
-  extractUstensils(recipes) {
-    const recipeReducer = (acc, current) => acc = current.toLowerCase()
-    const recipeUstensils = recipe => recipe.ustensils.reduce(recipeReducer, [])
+  extractUstensils(recipes, ustensilsToExclude = []) {
+    const ustensils = recipes.map(recipe => recipe.ustensils)
+    let ustensilsFiltered = ustensils.reduce((acc, current) => {
+      acc.push(...current)
 
-    return new Set([...recipes.map(recipeUstensils)])
+      return acc
+    }, [])
+
+    ustensilsFiltered = ustensilsToExclude.length > 0
+      ? this.itemWithoutExcluded(ustensilsFiltered, ustensilsToExclude)
+      : ustensilsFiltered
+
+    return new Set([...ustensilsFiltered])
   }
 }

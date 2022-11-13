@@ -22,16 +22,20 @@ export default class RecipesList {
   buildLiElements(ingredients)  {
     let li = ''
     let index = 0
-    const maxIndex = ingredients.length - 1
+    const maxIndex = ingredients.length
     const ingredientDetails = (value) => {
       let quantity = value?.quantity ? value.quantity : ''
       let unit = value?.unit ? value.unit : ''
 
-      return quantity+' '+unit
+      if (quantity === '' && unit === '') {
+        return ''
+      }
+
+      return `: ${quantity} ${unit}`
     }
 
     for(index; index < maxIndex; index += 1) {
-      li += `<li><strong>${ingredients[index].ingredient}:</strong> ${ingredientDetails(ingredients[index])}</li>`
+      li += `<li><strong>${ingredients[index].ingredient}</strong> ${ingredientDetails(ingredients[index])}</li>`
     }
 
     return li

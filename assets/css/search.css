@@ -170,4 +170,15 @@
   line-height: 180%;
   font-size: 18px;
   font-weight: 400;
+  cursor: pointer;
+}
+
+.item--tagged,
+.item--not-available,
+.item--not-matched {
+  display: none;
+}
+
+li.no-one-match {
+  cursor: default;
 }
