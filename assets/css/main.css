@@ -1,9 +1,12 @@
 .recipes {
+  margin-top: 25px;
+  padding-bottom: 50px;
+}
+
+.recipes > div {
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 30px;
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
 
 .recipe-item {
@@ -57,4 +60,21 @@
   font-family: Roboto;
   font-size: 12px;
   font-weight: 400;
+}
+
+.recipe-duration {
+  flex-shrink: 0;
+}
+
+.no-recipes {
+  display: none;
+}
+
+.no-recipes--show {
+  display: block;
+  margin: 50px 0;
+  color: #D04F4F;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
 }

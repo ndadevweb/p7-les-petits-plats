@@ -17,14 +17,16 @@
 	<aside class="container">
 		<form id="search-bar" class="search-bar" autocomplete="off">
 			<label for="search">Rechercher une recette</label>
-			<input type="search" id="search" placeholder="Rechercher une recette" autofocus>
-			<button type="submit" aria-label="Valider la recherche"><i class="fas fa-search"></i></button>
+			<div class="search-bar-input-container">
+				<input type="search" id="search" placeholder="Rechercher une recette" autofocus>
+				<span><i class="fas fa-search"></i></span>
+			</div>
 		</form>
 
 		<ul id="tags-area" class="tags-area"></ul>
 
 		<form id="advanced-search" class="tags-selection" autocomplete="off">
-			<fieldset class="tags-selection-item background--ingredient">
+			<fieldset class="tags-selection-item background--ingredient" data-open-list="ingredient">
 				<legend>Ingrédients</legend>
 
 				<div class="input-component">
@@ -35,7 +37,7 @@
 				<ul id="list-ingredients" class="items background--ingredient"></ul>
 			</fieldset>
 
-			<fieldset class="tags-selection-item background--appliance">
+			<fieldset class="tags-selection-item background--appliance" data-open-list="appliance">
 				<legend>Appareils</legend>
 
 				<div class="input-component">
@@ -46,7 +48,7 @@
 				<ul id="list-appliances" class="items background--appliance"></ul>
 			</fieldset>
 
-			<fieldset class="tags-selection-item background--ustensil">
+			<fieldset class="tags-selection-item background--ustensil" data-open-list="ustensil">
 				<legend>Ustensiles</legend>
 
 				<div class="input-component">
@@ -60,7 +62,13 @@
 	</aside>
 
 	<main class="container">
-		<section id="recipes" class="recipes" arial-label="Liste des recettes"></section>
+		<section id="recipes" class="recipes" arial-label="Liste des recettes">
+			<p class="no-recipes">
+				Aucune recette ne correspond à votre critère... vous pouvez
+				chercher « tarte aux pommes », "«" poisson », etc.
+			</p>
+			<div></div>
+		</section>
 	</main>
 
 	<script type="module" src="./assets/js/app.js"></script>
