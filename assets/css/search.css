@@ -166,16 +166,20 @@
   transform: rotate(180deg);
 }
 
+.items-wrapper {
+  max-height: 310px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .items {
-
   display:none;
-
   padding-left: 20px;
   padding-bottom: 20px;
   width: 660px;
   column-count: 3;
-  column-width: 200px;
   color: #FFF;
+
 }
 
 .items--open {
@@ -183,10 +187,21 @@
 }
 
 .items li {
-  line-height: 180%;
+  line-height: 150%;
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
+  width: 190px;
+  word-wrap: break-word;
+  padding-left: 0;
+  transition: padding-left 500ms;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.items li:hover {
+  padding-left: 10px;
 }
 
 .item--tagged,

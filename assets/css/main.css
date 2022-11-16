@@ -3,6 +3,12 @@
   padding-bottom: 50px;
 }
 
+.recipes-heading {
+  visibility: hidden;
+  height: 1px;
+  width: 1px;
+}
+
 .recipes > div {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

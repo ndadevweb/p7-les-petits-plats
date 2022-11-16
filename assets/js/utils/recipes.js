@@ -32,7 +32,7 @@ export default class Recipes {
     const keywordTrim = keyword?.trim()
     const recipes = []
 
-    if (keywordTrim !== '' && keywordTrim.length >= 3) {
+    if (keywordTrim !== '') {
       recipes.push(...this.fetchRecipeBySimpleSearch(keywordTrim))
     } else {
       recipes.push(...this.recipesAll)

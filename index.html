@@ -34,7 +34,9 @@
 					<button type="button" class="btn-select-tag arrow"><i class="fas fa-chevron-down"></i></button>
 				</div>
 
-				<ul id="list-ingredients" class="items background--ingredient"></ul>
+				<div class="items-wrapper">
+					<ul id="list-ingredients" class="items background--ingredient"></ul>
+				</div>
 			</fieldset>
 
 			<fieldset class="tags-selection-item background--appliance" data-open-list="appliance">
@@ -45,7 +47,9 @@
 					<button type="button" class="btn-select-tag arrow"><i class="fas fa-chevron-down"></i></button>
 				</div>
 
-				<ul id="list-appliances" class="items background--appliance"></ul>
+				<div class="items-wrapper">
+					<ul id="list-appliances" class="items background--appliance"></ul>
+				</div>
 			</fieldset>
 
 			<fieldset class="tags-selection-item background--ustensil" data-open-list="ustensil">
@@ -56,13 +60,16 @@
 					<button type="button" class="btn-select-tag arrow"><i class="fas fa-chevron-down"></i></button>
 				</div>
 
-				<ul id="list-ustensils" class="items background--ustensil"></ul>
+				<div class="items-wrapper">
+					<ul id="list-ustensils" class="items background--ustensil"></ul>
+				</div>
 			</fieldset>
 		</form>
 	</aside>
 
 	<main class="container">
-		<section id="recipes" class="recipes" arial-label="Liste des recettes">
+		<section id="recipes" class="recipes">
+			<h2 class="recipes-heading">Recettes</h2>
 			<p class="no-recipes">
 				Aucune recette ne correspond à votre critère... vous pouvez
 				chercher « tarte aux pommes », "«" poisson », etc.

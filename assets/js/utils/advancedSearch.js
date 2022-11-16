@@ -46,7 +46,7 @@ export default class AdvancedSearch {
 
     itemSorted.forEach(item => {
       const itemName = this.firstLetterToUpperCase(item)
-      const li = `<li tabindex="0" class="item" data-index="${iteration}" data-type="${type}">${itemName}</li>`
+      const li = `<li tabindex="0" class="item" data-index="${iteration}" data-type="${type}" title="${itemName}">${itemName}</li>`
 
       selector.insertAdjacentHTML('beforeend', li)
       iteration = iteration + 1

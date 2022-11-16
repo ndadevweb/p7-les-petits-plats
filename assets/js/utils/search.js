@@ -2,6 +2,7 @@ export default class Search {
   static SEARCH_MIN_SIZE_REQUIRED = 3
 
   constructor() {
+    this.form = document.querySelector('#search-bar')
     this.selector = document.querySelector('#search')
     this.inputValue = ''
   }
@@ -12,6 +13,8 @@ export default class Search {
    * @param {Function} callback
    */
   initEventListener(callback) {
+    this.form.addEventListener('submit', event => event.preventDefault())
+
     this.selector.addEventListener('input', (event) => {
       this.inputValue = event.target.value.trim()
       callback(event)

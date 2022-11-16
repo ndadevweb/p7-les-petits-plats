@@ -51,6 +51,12 @@ class App {
     this.advancedSearch.fill(AdvancedSearch.USTENSIL, recipeUstensils)
   }
 
+  /**
+   * Display / Hide items match or not with recipeItemList
+   *
+   * @param {Array} recipesFiltered
+   * @param {Object} options
+   */
   toggleWhenHasRecipeItem(recipesFiltered, options = {}) {
     const { recipeIngredients, recipeAppliances, recipeUstensils } = this.recipes.extractItems(recipesFiltered, options)
 
