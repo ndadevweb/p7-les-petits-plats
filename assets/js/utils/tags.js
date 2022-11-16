@@ -8,18 +8,37 @@ export default class Tags {
   }
 
   /**
+   * Initialize the listener using callbacks
+   *
+   * @param {Function} callback
+   */
+  initEventListener(callback) {
+    this.selector.addEventListener('click', callback)
+  }
+
+  /**
    * Returns all tags added
    *
    * @returns {Object}
    */
   fetchEnabled() {
+    const ingredientItems = this.selector.querySelectorAll('li[data-type="ingredient"] > span')
+    const applianceItems = this.selector.querySelectorAll('li[data-type="appliance"] > span')
+    const ustensilItems = this.selector.querySelectorAll('li[data-type="ustensil"] > span')
+
     return {
-      ingredients: Array.from(this.selector.querySelectorAll('li[data-type="ingredient"] > span')).map(li => li.textContent),
-      appliances: Array.from(this.selector.querySelectorAll('li[data-type="appliance"] > span')).map(li => li.textContent),
-      ustensils: Array.from(this.selector.querySelectorAll('li[data-type="ustensil"] > span')).map(li => li.textContent)
+      ingredients: Array.from(ingredientItems).map(li => li.textContent),
+      appliances: Array.from(applianceItems).map(li => li.textContent),
+      ustensils: Array.from(ustensilItems).map(li => li.textContent)
     }
   }
 
+  /**
+   * Add a tag in the tags area list
+   *
+   * @param {String} name
+   * @param {DOMStringMap} dataset
+   */
   add(name, dataset) {
     const { index, type } = dataset
     let classNameType = ''
@@ -43,6 +62,12 @@ export default class Tags {
     this.selector.insertAdjacentHTML('beforeend', li)
   }
 
+  /**
+   * Check if button to remove tag is clicked
+   *
+   * @param {Element} target
+   * @returns {Boolean}
+   */
   isButtonRemoveClicked(target) {
     return target.closest('.btn-select-tag') !== null
   }

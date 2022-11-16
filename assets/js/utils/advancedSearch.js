@@ -11,6 +11,17 @@ export default class AdvancedSearch {
   }
 
   /**
+   * Initialize the listeners using callbacks
+   *
+   * @param {Function} callbackClick
+   * @param {Function} callbackInput
+   */
+  initEventListener(callbackClick, callbackInput) {
+    this.selector.addEventListener('click', callbackClick)
+    this.selector.addEventListener('input', callbackInput)
+  }
+
+  /**
    *
    * @param {Array} items
    * @returns {Array}

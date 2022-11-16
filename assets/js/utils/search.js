@@ -1,0 +1,33 @@
+export default class Search {
+  static SEARCH_MIN_SIZE_REQUIRED = 3
+
+  constructor() {
+    this.selector = document.querySelector('#search')
+    this.inputValue = ''
+  }
+
+  /**
+   * Initialize the listener using callbacks
+   *
+   * @param {Function} callback
+   */
+  initEventListener(callback) {
+    this.selector.addEventListener('input', (event) => {
+      this.inputValue = event.target.value.trim()
+      callback(event)
+    })
+  }
+
+  /**
+   * Check if value argument is valid
+   *
+   * @param {String} value
+   * @returns {Boolean}
+   */
+  isNotValid(value) {
+    return (
+      this.inputValue !== '' &&
+      this.inputValue.length < Search.SEARCH_MIN_SIZE_REQUIRED
+    ) === true
+  }
+}

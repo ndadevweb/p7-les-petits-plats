@@ -156,7 +156,7 @@ export default class Recipes {
    * @returns {Set<string>}
    */
   extractUstensils(recipes, ustensilsToExclude = []) {
-    const ustensils = recipes.map(recipe => recipe.ustensils)
+    const ustensils = recipes.map(recipe => recipe.ustensils.map(ustensil => ustensil.toLowerCase()))
     let ustensilsFiltered = ustensils.reduce((acc, current) => {
       acc.push(...current)
 
