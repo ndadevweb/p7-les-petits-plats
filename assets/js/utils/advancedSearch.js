@@ -249,4 +249,36 @@ export default class AdvancedSearch {
       }
     })
   }
+
+  /**
+   *
+   * @param {String} type
+   * @returns {Boolean}
+   */
+  hasItemsAvailable(type) {
+    const selector = this.getSelectorByType(type)
+
+    return (selector.querySelectorAll(
+      '.item:not(.item--not-matched, .item--not-available, .item--tagged)'
+    ).length) > 0
+  }
+
+  /**
+   * Adding an information message when there are no one items in the list
+   *
+   * @param {String} type
+   */
+  toggleMessageWhenNoItems(type) {
+    const selector = this.getSelectorByType(type)
+    const selectorItem = selector.querySelector('.items--empty')
+
+    if(this.hasItemsAvailable(type) === false) {
+      if(selectorItem === null) {
+        const message = "Aucunes options de disponible"
+        selector.insertAdjacentHTML('afterbegin', `<li class="items--empty">${message}</li>`)
+      }
+    } else {
+      selector.querySelector('.items--empty')?.remove()
+    }
+  }
 }

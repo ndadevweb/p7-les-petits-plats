@@ -1,12 +1,10 @@
 import { default as recipesData } from '../../data/recipes.js'
-import Recipes from './utils/recipes.js'
+import Search from './utils/search.js'
 import Tags from './utils/tags.js'
 import AdvancedSearch from './utils/advancedSearch.js'
-
-import Search from './utils/search.js'
+import Recipes from './utils/recipes.js'
 
 class App {
-  static SEARCH_MIN_SIZE_REQUIRED = 3
 
   constructor() {
     this.search =  new Search
@@ -132,6 +130,8 @@ class App {
       this.advancedSearch.toggleMatches(type, advancedSearchValue)
       this.advancedSearch.open(type)
     }
+
+    this.advancedSearch.toggleMessageWhenNoItems(type)
   }
 }
 
