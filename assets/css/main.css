@@ -5,7 +5,8 @@
 
 .recipes > div {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
   gap: 30px;
 }
 
