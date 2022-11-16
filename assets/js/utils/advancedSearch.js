@@ -157,7 +157,7 @@ export default class AdvancedSearch {
    *
    * @param {Element} elementToIgnore
    */
-  closeAll(elementToIgnore) {
+  closeAllExceptOne(elementToIgnore) {
     const advancedSearchElements = this.selector.querySelectorAll('.tags-selection-item')
 
     advancedSearchElements.forEach(element => {

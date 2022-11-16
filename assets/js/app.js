@@ -102,7 +102,7 @@ class App {
     if(this.advancedSearch.isButtonClicked(event.target) === true) {
       const itemAdvancedSearch = event.target.closest('.tags-selection-item')
       const type = itemAdvancedSearch.dataset.openList
-      this.advancedSearch.closeAll(itemAdvancedSearch)
+      this.advancedSearch.closeAllExceptOne(itemAdvancedSearch)
       this.advancedSearch.toggleItemList(type)
     }
 
@@ -122,6 +122,9 @@ class App {
   handleInputAdvancedSearch(event) {
     const advancedSearchValue = event.target.value.trim()
     const type = event.target.closest('[data-open-list]').dataset.openList
+
+    // Close all element if are open except one that is defined in argument
+    this.advancedSearch.closeAllExceptOne(event.target)
 
     if(advancedSearchValue === '') {
       this.advancedSearch.resetMatch(type)
