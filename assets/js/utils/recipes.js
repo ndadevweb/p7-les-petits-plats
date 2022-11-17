@@ -50,15 +50,21 @@ export default class Recipes {
    * @returns {Boolean}
    */
   fetchRecipeBySimpleSearch(keyword) {
-    const recipesMatches = recipe => {
-      return (
-        this.hasKeywordInName(recipe, keyword) === true
-        || this.hasKeywordInDescription(recipe, keyword) === true
-        || this.hasIngredient(recipe, keyword) === true
-      )
+    const recipesLength = this.recipesAll.length
+    let recipesMatch = []
+
+    for(let index = 0; index < recipesLength; index += 1) {
+      const recipe = this.recipesAll[index]
+      const hasKeywordInName = this.hasKeywordInName(recipe, keyword)
+      const hasKeywordInDescription = this.hasKeywordInDescription(recipe, keyword)
+      const hasIngredient = this.hasIngredient(recipe, keyword)
+
+      if(hasKeywordInName  === true || hasKeywordInDescription === true || hasIngredient === true) {
+        recipesMatch = [...recipesMatch, recipe]
+      }
     }
 
-    return this.recipesAll.filter(recipesMatches)
+    return recipesMatch
   }
 
   /**
@@ -205,8 +211,17 @@ export default class Recipes {
    */
   hasIngredient(recipe, keyword) {
     const keywordToLower = keyword.toLowerCase()
+    const ingredientsLength = recipe.ingredients.length
+    let founded = false
 
-    return recipe.ingredients.some(detail => detail.ingredient.toLowerCase().includes(keywordToLower))
+    for(let index = 0; index < ingredientsLength; index += 1) {
+      if(recipe.ingredients[index].ingredient.toLowerCase() === keywordToLower) {
+        founded = true
+        break
+      }
+    }
+
+    return founded
   }
 
   /**
