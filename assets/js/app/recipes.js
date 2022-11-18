@@ -1,6 +1,6 @@
 export default class Recipes {
   /**
-   * @param {Array[<Object>]} recipes Must contains all recipes
+   * @param {Array<Object>} recipes Must contains all recipes
    */
   constructor(recipes) {
     this.recipesAll = recipes
@@ -13,7 +13,7 @@ export default class Recipes {
   /**
    * Returns all recipes available without filters
    *
-   * @returns {Array[<Object>]}
+   * @returns {Array<Object>}
    */
   fetchAll() {
     return this.recipesAll
@@ -113,8 +113,8 @@ export default class Recipes {
   /**
    * Returns an array containing all ingredients
    *
-   * @param {Object[]} recipes
-   * @param {Array[<string>]} ingredientsToExclude
+   * @param {Object} recipes
+   * @param {Array<string>} ingredientsToExclude
    * @returns {Set<string>}
    */
    extractIngredients(recipes, ingredientsToExclude = []) {
@@ -134,8 +134,8 @@ export default class Recipes {
   /**
    * Returns an array containing all appliances
    *
-   * @param {Object[]} recipes
-   * @param {Array[<string>]} appliancesToExclude
+   * @param {Object} recipes
+   * @param {Array<string>} appliancesToExclude
    * @returns {Set<string>}
    */
   extractAppliances(recipes, appliancesToExclude = []) {
@@ -151,8 +151,8 @@ export default class Recipes {
   /**
    * Returns an array containing all ustensils
    *
-   * @param {Object[]} recipes
-   * @param {Array[<string>]} ustensilsToExclude
+   * @param {Object} recipes
+   * @param {Array<string>} ustensilsToExclude
    * @returns {Set<string>}
    */
   extractUstensils(recipes, ustensilsToExclude = []) {

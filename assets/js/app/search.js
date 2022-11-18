@@ -1,6 +1,9 @@
 export default class Search {
   static SEARCH_MIN_SIZE_REQUIRED = 3
 
+  /**
+   * Initialize tags with which to interact
+   */
   constructor() {
     this.form = document.querySelector('#search-bar')
     this.selector = document.querySelector('#search')
