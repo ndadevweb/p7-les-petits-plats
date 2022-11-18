@@ -3,6 +3,9 @@ export default class AdvancedSearch {
   static APPLIANCE = 'appliance'
   static USTENSIL = 'ustensil'
 
+  /**
+   * Initialize tags with which to interact
+   */
   constructor() {
     this.selector = document.querySelector('#advanced-search')
     this.selectorIngredientsList = document.querySelector('#list-ingredients')
@@ -22,6 +25,7 @@ export default class AdvancedSearch {
   }
 
   /**
+   * Sort item in alphabetical order
    *
    * @param {Array} items
    * @returns {Array}
@@ -31,7 +35,7 @@ export default class AdvancedSearch {
   }
 
   /**
-   * Fills items list
+   * Fill items list
    *
    * @param {String} type
    * @param {Array} items
@@ -87,7 +91,8 @@ export default class AdvancedSearch {
   }
 
   /**
-   * Check if the button is clicked
+   * Check if the button to open / close
+   * the advanced search is clicked
    *
    * @param {Element} target
    * @returns {Boolean}
@@ -109,6 +114,11 @@ export default class AdvancedSearch {
     return isClicked
   }
 
+  /**
+   * Open an advanced search
+   *
+   * @param {String} type
+   */
   open(type) {
     const selectorItems = this.getSelectorByType(type)
     const button = selectorItems.closest('.tags-selection-item').querySelector('.btn-select-tag')
@@ -116,6 +126,11 @@ export default class AdvancedSearch {
     button.classList.add('arrow--open')
   }
 
+  /**
+   * Close an advanced search
+   *
+   * @param {String} type
+   */
   close(type) {
     const selectorItems = this.getSelectorByType(type)
     const button = selectorItems.closest('.tags-selection-item').querySelector('.btn-select-tag')
@@ -145,6 +160,12 @@ export default class AdvancedSearch {
     return isClicked
   }
 
+  /**
+   * Return all items in an advanced search
+   *
+   * @param {String} type
+   * @returns {Array}
+   */
   fetchAll(type) {
     const selector = this.getSelectorByType(type)
     const items = Array.from(selector.querySelectorAll('.item'))
@@ -274,11 +295,33 @@ export default class AdvancedSearch {
 
     if(this.hasItemsAvailable(type) === false) {
       if(selectorItem === null) {
-        const message = "Aucunes options de disponible"
+        const message = this.getText(type)
         selector.insertAdjacentHTML('afterbegin', `<li class="items--empty">${message}</li>`)
       }
     } else {
       selector.querySelector('.items--empty')?.remove()
+    }
+  }
+
+  /**
+   * Return a message matches with 'type'
+   *
+   * @param {String} type
+   * @returns {String}
+   */
+  getText(type) {
+    switch (type) {
+      case AdvancedSearch.INGREDIENT:
+        return "Aucun ingrédient disponible"
+
+      case AdvancedSearch.APPLIANCE:
+        return "Aucun appareil disponible"
+
+      case AdvancedSearch.USTENSIL:
+        return "Aucun ustensile disponible"
+
+      default:
+        return "Aucune option disponible"
     }
   }
 }

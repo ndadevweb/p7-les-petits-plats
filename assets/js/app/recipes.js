@@ -1,6 +1,6 @@
 export default class Recipes {
   /**
-   * @param {Array[<Object>]} recipes Must contains all recipes
+   * @param {Array<Object>} recipes Must contains all recipes
    */
   constructor(recipes) {
     this.recipesAll = recipes
@@ -13,7 +13,7 @@ export default class Recipes {
   /**
    * Returns all recipes available without filters
    *
-   * @returns {Array[<Object>]}
+   * @returns {Array<Object>}
    */
   fetchAll() {
     return this.recipesAll
@@ -50,21 +50,15 @@ export default class Recipes {
    * @returns {Boolean}
    */
   fetchRecipeBySimpleSearch(keyword) {
-    const recipesLength = this.recipesAll.length
-    let recipesMatch = []
-
-    for(let index = 0; index < recipesLength; index += 1) {
-      const recipe = this.recipesAll[index]
-      const hasKeywordInName = this.hasKeywordInName(recipe, keyword)
-      const hasKeywordInDescription = this.hasKeywordInDescription(recipe, keyword)
-      const hasIngredient = this.hasIngredient(recipe, keyword)
-
-      if(hasKeywordInName  === true || hasKeywordInDescription === true || hasIngredient === true) {
-        recipesMatch = [...recipesMatch, recipe]
-      }
+    const recipesMatches = recipe => {
+      return (
+        this.hasKeywordInName(recipe, keyword) === true
+        || this.hasKeywordInDescription(recipe, keyword) === true
+        || this.hasIngredient(recipe, keyword) === true
+      )
     }
 
-    return recipesMatch
+    return this.recipesAll.filter(recipesMatches)
   }
 
   /**
@@ -119,8 +113,8 @@ export default class Recipes {
   /**
    * Returns an array containing all ingredients
    *
-   * @param {Object[]} recipes
-   * @param {Array[<string>]} ingredientsToExclude
+   * @param {Object} recipes
+   * @param {Array<string>} ingredientsToExclude
    * @returns {Set<string>}
    */
    extractIngredients(recipes, ingredientsToExclude = []) {
@@ -140,8 +134,8 @@ export default class Recipes {
   /**
    * Returns an array containing all appliances
    *
-   * @param {Object[]} recipes
-   * @param {Array[<string>]} appliancesToExclude
+   * @param {Object} recipes
+   * @param {Array<string>} appliancesToExclude
    * @returns {Set<string>}
    */
   extractAppliances(recipes, appliancesToExclude = []) {
@@ -157,8 +151,8 @@ export default class Recipes {
   /**
    * Returns an array containing all ustensils
    *
-   * @param {Object[]} recipes
-   * @param {Array[<string>]} ustensilsToExclude
+   * @param {Object} recipes
+   * @param {Array<string>} ustensilsToExclude
    * @returns {Set<string>}
    */
   extractUstensils(recipes, ustensilsToExclude = []) {
@@ -211,17 +205,8 @@ export default class Recipes {
    */
   hasIngredient(recipe, keyword) {
     const keywordToLower = keyword.toLowerCase()
-    const ingredientsLength = recipe.ingredients.length
-    let founded = false
 
-    for(let index = 0; index < ingredientsLength; index += 1) {
-      if(recipe.ingredients[index].ingredient.toLowerCase() === keywordToLower) {
-        founded = true
-        break
-      }
-    }
-
-    return founded
+    return recipe.ingredients.some(detail => detail.ingredient.toLowerCase().includes(keywordToLower))
   }
 
   /**
