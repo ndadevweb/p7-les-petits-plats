@@ -204,15 +204,6 @@
   padding-left: 10px;
 }
 
-.items li.items--empty {
-  overflow: visible;
-  cursor: initial;
-}
-
-.items li.items--empty:hover {
-  padding-left: 0;
-}
-
 .item--tagged,
 .item--not-available,
 .item--not-matched {

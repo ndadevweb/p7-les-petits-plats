@@ -3,9 +3,6 @@ export default class Tags {
   static APPLIANCE = 'appliance'
   static USTENSIL = 'ustensil'
 
-  /**
-   * Initialize tags with which to interact
-   */
   constructor() {
     this.selector = document.querySelector('#tags-area')
   }

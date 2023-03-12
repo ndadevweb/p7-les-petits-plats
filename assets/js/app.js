@@ -1,14 +1,11 @@
 import { default as recipesData } from '../../data/recipes.js'
-import Search from './app/search.js'
-import Tags from './app/tags.js'
-import AdvancedSearch from './app/advancedSearch.js'
-import Recipes from './app/recipes.js'
+import Search from './utils/search.js'
+import Tags from './utils/tags.js'
+import AdvancedSearch from './utils/advancedSearch.js'
+import Recipes from './utils/recipes.js'
 
 class App {
 
-  /**
-   * Initialize object to interact with the application
-   */
   constructor() {
     this.search =  new Search
     this.tags = new Tags
@@ -34,9 +31,6 @@ class App {
     this.handleInputAdvancedSearch = this.handleInputAdvancedSearch.bind(this)
   }
 
-  /**
-   * Init event handle to interact with ui
-   */
   initEvents() {
     this.search.initEventListener(this.handleInputSearch)
     this.tags.initEventListener(this.handleClickTagsArea)
@@ -71,11 +65,6 @@ class App {
     this.advancedSearch.toggleWhenHasRecipeItem(AdvancedSearch.USTENSIL, recipeUstensils)
   }
 
-  /**
-   * Return keywords and enabled tags
-   *
-   * @returns {Object}
-   */
   getOptions() {
     return {
       keyword: this.search.inputValue,
@@ -83,12 +72,6 @@ class App {
     }
   }
 
-  /**
-   * Callback handler to interact with input search
-   *
-   * @param {Event} event
-   * @returns null
-   */
   handleInputSearch(event) {
     if(this.search.isNotValid(event.target.value) === true) {
       return null
@@ -102,12 +85,6 @@ class App {
     this.toggleWhenHasRecipeItem(recipesFiltered, options)
   }
 
-  /**
-   * Callback handler to remove enabled item tags
-   * inside tags area
-   *
-   * @param {Event} event
-   */
   handleClickTagsArea(event) {
     if(this.tags.isButtonRemoveClicked(event.target) === true) {
       const li = event.target.closest('li')
@@ -122,18 +99,11 @@ class App {
 
       this.toggleWhenHasRecipeItem(recipesFiltered)
       this.advancedSearch.itemTagged(selectorItem, false)
-      this.advancedSearch.toggleMessageWhenNoItems(type)
       this.recipes.setToDisplay(recipesFiltered)
       this.recipes.display()
     }
   }
 
-  /**
-   * Callback handler to interact with items
-   * displayed inside advanced search
-   *
-   * @param {Event} event
-   */
   handleClickAdvancedSearch(event) {
     if(this.advancedSearch.isButtonClicked(event.target) === true) {
       const itemAdvancedSearch = event.target.closest('.tags-selection-item')
@@ -148,21 +118,13 @@ class App {
 
       const options = this.getOptions()
       const recipesFiltered = this.recipes.fetchRecipesFiltered(options)
-      const type = event.target.closest('.tags-selection-item').dataset.openList
 
       this.recipes.setToDisplay(recipesFiltered)
       this.recipes.display()
       this.toggleWhenHasRecipeItem(recipesFiltered, options)
-      this.advancedSearch.toggleMessageWhenNoItems(type)
     }
   }
 
-  /**
-   * Callback handler to interact with
-   * advanced search input
-   *
-   * @param {Event} event
-   */
   handleInputAdvancedSearch(event) {
     const advancedSearchValue = event.target.value.trim()
     const type = event.target.closest('[data-open-list]').dataset.openList
