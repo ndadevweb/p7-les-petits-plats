@@ -20,14 +20,25 @@ L'objectif est de développer un algorithme de recherche par texte ou en sélect
 
 ## Voir le projet en ligne
 
+[Functionnal Programming](https://p7-lespetitsplats-functionnalprogramming.ndadevweb.com/)
 
+[Native Loop](https://p7-lespetitsplats-nativeloop.ndadevweb.com/)
 
 ---
 
 
 ## Validation du code
 
+Functionnal Programming
+[W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fp7-lespetitsplats-functionnalprogramming.ndadevweb.com%2F)
 
+[CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fp7-lespetitsplats-functionnalprogramming.ndadevweb.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=fr)
+
+
+Native Loop
+[W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fp7-lespetitsplats-nativeloop.ndadevweb.com%2F)
+
+[CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fp7-lespetitsplats-nativeloop.ndadevweb.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=fr)
 
 ---
 
@@ -45,6 +56,7 @@ L'objectif est de développer un algorithme de recherche par texte ou en sélect
 ## Installation
 
 - Installer NodeJS
-- Cloner le projet git clone https://github.com/ndadevweb/p7-les-petits-plats.git
+- Cloner le projet git clone `https://github.com/ndadevweb/p7-les-petits-plats.git`
+- Choisir la branche implémentant l'option souhaitée `git checkout main` ou `git checkout searchNativeLoop`
 - Lancer npm install
 - Installer l'extension Live Server
