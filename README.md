@@ -1,4 +1,4 @@
-# Projet 7 - Les petits plats ( Branche main - Option 1 Native Loop )
+# Projet 7 - Les petits plats ( Branche searchNativeLoop - Option 1 Native Loop )
 
 ## Description
 
