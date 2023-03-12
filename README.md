@@ -1,4 +1,4 @@
-# Projet 7 - Les petits plats
+# Projet 7 - Les petits plats (Branche main - Option 2 Functionnal Programming)
 
 ## Description
 
