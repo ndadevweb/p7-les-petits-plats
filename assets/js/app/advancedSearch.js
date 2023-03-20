@@ -1,3 +1,5 @@
+import { convertAccentsToUnaccented } from './utils.js'
+
 export default class AdvancedSearch {
   static INGREDIENT = 'ingredient'
   static APPLIANCE = 'appliance'
@@ -246,9 +248,11 @@ export default class AdvancedSearch {
    * @returns {Array}
    */
   fetchMatches(type, itemName) {
-    itemName = itemName.toLowerCase()
+    itemName = convertAccentsToUnaccented(itemName.toLowerCase())
     const items = this.fetchAll(type)
-    const itemsMatches = items.filter(item => item.textContent.toLowerCase().startsWith(itemName))
+    const itemsMatches = items.filter(item => (
+      convertAccentsToUnaccented(item.textContent.toLowerCase()).includes(itemName)
+    ))
 
     return itemsMatches
   }

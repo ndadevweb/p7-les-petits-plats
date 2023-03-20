@@ -1,3 +1,5 @@
+import { convertAccentsToUnaccented } from './utils.js'
+
 export default class Recipes {
   /**
    * @param {Array<Object>} recipes Must contains all recipes
@@ -127,6 +129,7 @@ export default class Recipes {
     const ingredients = recipes.map(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase()))
     let ingredientsFiltered = ingredients.reduce((acc, current) => {
       acc.push(...current)
+
       return acc
     }, [])
 
@@ -184,9 +187,10 @@ export default class Recipes {
    * @returns {Boolean}
    */
   hasKeywordInName(recipe, keyword) {
-    const keywordToLower = keyword.toLowerCase()
+    const keywordToLower = convertAccentsToUnaccented(keyword.toLowerCase())
 
-    return recipe.name.toLowerCase().indexOf(keywordToLower) !== -1
+    return convertAccentsToUnaccented(recipe.name.toLowerCase())
+      .indexOf(keywordToLower) !== -1
   }
 
   /**
@@ -197,9 +201,10 @@ export default class Recipes {
    * @returns {Boolean}
    */
   hasKeywordInDescription(recipe, keyword) {
-    const keywordToLower = keyword.toLowerCase()
+    const keywordToLower = convertAccentsToUnaccented(keyword.toLowerCase())
 
-    return recipe.description.toLowerCase().indexOf(keywordToLower) !== -1
+    return convertAccentsToUnaccented(recipe.description.toLowerCase())
+      .indexOf(keywordToLower) !== -1
   }
 
   /**
@@ -210,12 +215,16 @@ export default class Recipes {
    * @returns {Boolean}
    */
   hasIngredient(recipe, keyword) {
-    const keywordToLower = keyword.toLowerCase()
+    const keywordToLower = convertAccentsToUnaccented(keyword.toLowerCase())
     const ingredientsLength = recipe.ingredients.length
     let founded = false
 
     for(let index = 0; index < ingredientsLength; index += 1) {
-      if(recipe.ingredients[index].ingredient.toLowerCase() === keywordToLower) {
+      const recipeIngredient = convertAccentsToUnaccented(
+        recipe.ingredients[index].ingredient.toLowerCase()
+      )
+
+      if(recipeIngredient === keywordToLower) {
         founded = true
         break
       }
@@ -233,9 +242,13 @@ export default class Recipes {
    * @returns {Array}
    */
   hasIngredientsSelected(recipe, ingredientsSelected) {
-    const recipeIngredients = recipe.ingredients.map(ingredientList => ingredientList.ingredient.toLowerCase())
+    const recipeIngredients = recipe.ingredients.map(ingredientList => (
+      convertAccentsToUnaccented(ingredientList.ingredient.toLowerCase())
+    ))
 
-    return ingredientsSelected.every(ingredientSelected => recipeIngredients.includes(ingredientSelected.toLowerCase())) === true
+    return ingredientsSelected.every(ingredientSelected => (
+      recipeIngredients.includes(convertAccentsToUnaccented(ingredientSelected.toLowerCase()))) === true
+    )
   }
 
   /**
@@ -247,9 +260,11 @@ export default class Recipes {
    * @returns {Array}
    */
   hasAppliancesSelected(recipe, appliancesSelected) {
-    const recipeAppliances = [recipe.appliance.toLowerCase()]
+    const recipeAppliances = [convertAccentsToUnaccented(recipe.appliance.toLowerCase())]
 
-    return appliancesSelected.every(applianceSelected => recipeAppliances.includes(applianceSelected.toLowerCase())) === true
+    return appliancesSelected.every(applianceSelected => (
+      recipeAppliances.includes(convertAccentsToUnaccented(applianceSelected.toLowerCase()))) === true
+    )
   }
 
   /**
@@ -261,9 +276,13 @@ export default class Recipes {
    * @returns {Array}
    */
   hasUstensilsSelected(recipe, ustensilsSelected) {
-    const recipeUstensils = recipe.ustensils.map(ustensil => ustensil.toLowerCase())
+    const recipeUstensils = recipe.ustensils.map(ustensil => (
+      convertAccentsToUnaccented(ustensil.toLowerCase())
+    ))
 
-    return ustensilsSelected.every(ustensilSelected => recipeUstensils.includes(ustensilSelected.toLowerCase())) === true
+    return ustensilsSelected.every(ustensilSelected => recipeUstensils.includes(
+      convertAccentsToUnaccented(ustensilSelected.toLowerCase())
+    )) === true
   }
 
   /**
